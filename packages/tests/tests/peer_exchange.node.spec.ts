@@ -1,4 +1,4 @@
-import tests from "@libp2p/interface-compliance-tests/peer-discovery";
+import tests from "@libp2p/interface-peer-discovery-compliance-tests";
 import type { LightNode, PeerInfo } from "@waku/interfaces";
 import {
   PeerExchangeCodec,
@@ -117,11 +117,7 @@ describe("Peer Exchange", () => {
         await waku.start();
 
         const nwaku2Ma = await nwaku2.getMultiaddrWithId();
-
-        // we do this because we want peer-exchange discovery to get initialised before we dial the peer which contains info about the other peer
-        setTimeout(() => {
-          void waku.libp2p.dialProtocol(nwaku2Ma, PeerExchangeCodec);
-        }, 1000);
+        await waku.libp2p.dialProtocol(nwaku2Ma, PeerExchangeCodec);
 
         return new PeerExchangeDiscovery(waku.libp2p.components);
       },

@@ -1,5 +1,5 @@
-import { EventEmitter } from "@libp2p/interface/events";
-import tests from "@libp2p/interface-compliance-tests/peer-discovery";
+import tests from "@libp2p/interface-peer-discovery-compliance-tests";
+import { EventEmitter } from "@libp2p/interfaces/events";
 import { createSecp256k1PeerId } from "@libp2p/peer-id-factory";
 import { PersistentPeerStore } from "@libp2p/peer-store";
 import {
