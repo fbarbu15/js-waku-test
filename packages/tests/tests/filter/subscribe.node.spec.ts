@@ -51,6 +51,9 @@ describe("Waku Filter V2: Subscribe", function () {
   });
 
   it("Subscribe and receive messages via lightPush", async function () {
+    // Nwaku subscribe to the default pubsub topic
+    await nwaku.sendSubscriptions();
+
     await subscription.subscribe([TestDecoder], messageCollector.callback);
 
     await waku.lightPush.send(TestEncoder, messagePayload);
@@ -61,6 +64,9 @@ describe("Waku Filter V2: Subscribe", function () {
   });
 
   it("Subscribe and receive messages via waku relay post", async function () {
+    // Nwaku subscribe to the default pubsub topic
+    await nwaku.sendSubscriptions();
+
     await subscription.subscribe([TestDecoder], messageCollector.callback);
 
     await delay(400);
@@ -79,6 +85,9 @@ describe("Waku Filter V2: Subscribe", function () {
   });
 
   it("Subscribe and receive 2 messages on the same topic", async function () {
+    // Nwaku subscribe to the default pubsub topic
+    await nwaku.sendSubscriptions();
+
     await subscription.subscribe([TestDecoder], messageCollector.callback);
 
     await waku.lightPush.send(TestEncoder, messagePayload);
@@ -102,6 +111,9 @@ describe("Waku Filter V2: Subscribe", function () {
   });
 
   it("Subscribe and receive messages on 2 different content topics", async function () {
+    // Nwaku subscribe to the default pubsub topic
+    await nwaku.sendSubscriptions();
+
     // Subscribe to the first content topic and send a message.
     await subscription.subscribe([TestDecoder], messageCollector.callback);
     await waku.lightPush.send(TestEncoder, messagePayload);

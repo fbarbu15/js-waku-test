@@ -67,6 +67,8 @@ describe("Waku Light Push [node only]", () => {
   it("Push successfully", async function () {
     this.timeout(15_000);
 
+    await nwaku.sendSubscriptions();
+
     const messageText = "Light Push works!";
 
     const pushResponse = await waku.lightPush.send(TestEncoder, {
@@ -133,6 +135,9 @@ describe("Waku Light Push [node only] - custom pubsub topic", () => {
 
   it("Push message", async function () {
     this.timeout(15_000);
+
+    log("Waiting for nwaku to subscribe to pubsub topic");
+    await nwaku.sendSubscriptions([customPubSubTopic]);
 
     const nimPeerId = await nwaku.getPeerId();
     const messageText = "Light Push works!";
